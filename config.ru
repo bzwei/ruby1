@@ -12,14 +12,16 @@ map '/lobster' do
 end
 
 require 'kafka'
-map '/' do
-  kafka = Kafka.new(seed_brokers: ["apache-kafka:9092"])
+kafka = Kafka.new(seed_brokers: ["apache-kafka:9092"])
+consumer = kafka.consumer(group_id:"my-consumer")
+consumer.subscribe('data')
+kafka.each_message do |message|
+  open('kout','a') {|f| f.puts message.value}
+end
 
-  kafka.each_message(topic: "greetings") do |message|
-    open('kout','a') {|f| f.puts message.value}
-  end  
+map '/' do
   welcome = proc do |env|
     [200, { "Content-Type" => "text/html"}, ["Started"]]
   end
-  run welcom
+  run welcome
 end
