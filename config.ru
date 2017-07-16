@@ -15,7 +15,7 @@ require 'kafka'
 kafka = Kafka.new(seed_brokers: ["apache-kafka:9092"])
 consumer = kafka.consumer(group_id:"my-consumer")
 consumer.subscribe('data')
-kafka.each_message do |message|
+consumer.each_message do |message|
   open('kout','a') {|f| f.puts message.value}
 end
 
