@@ -36,7 +36,7 @@ consumer.each_message do |message|
       :Volume => data[6],
     }
   )
-  end
+#  end
 end
 
 map '/' do
