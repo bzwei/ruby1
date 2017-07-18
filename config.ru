@@ -22,8 +22,6 @@ consumer.subscribe('data')
 consumer.each_message do |message|
   data = message.value.split(',')
   client.index(
-#  File.open("test","a") do |f|
-#   f.puts(
     :index => 'stock',
     :type => 'mytype',
     :body => {
@@ -36,7 +34,6 @@ consumer.each_message do |message|
       :Volume => data[6],
     }
   )
-#  end
 end
 
 map '/' do
