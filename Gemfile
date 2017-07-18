@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
 gem 'ruby-kafka'
+gem 'elasticsearch'
 gem 'puma'
 gem 'rack'
