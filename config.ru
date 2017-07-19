@@ -26,12 +26,12 @@ consumer.each_message do |message|
     :type => 'mytype',
     :body => {
       :Date => Date.parse(data[0]),
-      :Open => data[1],
-      :High => data[2],
-      :Low => data[3],
-      :Close => data[4],
-      :"Adj Close" => data[5],
-      :Volume => data[6],
+      :Open => data[1].to_f,
+      :High => data[2].to_f,
+      :Low => data[3].to_f,
+      :Close => data[4].to_f,
+      :"Adj Close" => data[5].to_f,
+      :Volume => data[6].to_i,
     }
   )
 end
